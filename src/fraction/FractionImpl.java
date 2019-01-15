@@ -1,11 +1,10 @@
-import jdk.nashorn.internal.objects.Global;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+package fraction;
 
 public class FractionImpl implements Fraction {
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Normalize the fraction as you create it.
-     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
+     * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>fraction.Fraction</pre> with numerator
      * <pre>-2</pre> and denominator <pre>3</pre>.
      *
      * The constructor should throw an <pre>ArithmeticException</pre> if the denominator is zero.
@@ -13,8 +12,9 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
-    int numerator, denominator, f; // f is the numerical form of the fraction
-    String fraction;
+    int numerator, denominator;
+
+
 
     public FractionImpl(int numerator, int denominator) {
         // TODO
@@ -23,6 +23,10 @@ public class FractionImpl implements Fraction {
 
         if(this.denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
+        }
+        else if(this.denominator < 0) {
+            this.denominator *= -1;
+            this.numerator *= -1;
         }
 
         while(this.numerator % this.denominator != 0) {
@@ -63,10 +67,10 @@ public class FractionImpl implements Fraction {
      */
     public FractionImpl(String fraction) {
         // TODO
-        this.fraction = fraction;
-        char d_string = fraction.charAt(-1);
 
-        if(d_string == '0')
+        char den_string = fraction.charAt(-1);
+
+        if(den_string == '0')
         {
             throw new ArithmeticException("cannot divide by 0");
         }
@@ -77,6 +81,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
+
+
+
         return null;
     }
 
@@ -165,7 +172,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        this.fraction = this.numerator + "/" + this.denominator;
-        return this.fraction;
+        //this.fraction = this.numerator + "/" + this.denominator;
+        //return this.fraction;
+        return null;
     }
 }

@@ -1,3 +1,5 @@
+package fraction;
+
 /**
  * Representing fractions of the form numerator and denominator
  * The object should be immutable.
@@ -5,16 +7,17 @@
 public interface Fraction extends Comparable<Fraction> {
 
     /**
-     * Returns a new <pre>Fraction</pre> that is the <em>sum</em> of <pre>this</pre> and the parameter:
+     * Returns a new <pre>fraction.Fraction</pre> that is the <em>sum</em> of <pre>this</pre> and the parameter:
      *  <pre>a/b + c/d</pre> is <pre>(ad + bc)/bd</pre>
      *
      * @param f the fraction to add to the current fraction
      * @return the result of the addition
+     *
      */
-    public Fraction add(Fraction f);
 
+    public Fraction add(Fraction f);
     /**
-     * Returns a new <pre>Fraction</pre> that is the <em>difference</em> of <pre>this</pre> minus the parameter
+     * Returns a new <pre>fraction.Fraction</pre> that is the <em>difference</em> of <pre>this</pre> minus the parameter
      * <pre>a/b - c/d</pre> is <pre>(ad - bc)/bd</pre>
      *
      * @param f the fraction to subtract from the current fraction
@@ -23,7 +26,7 @@ public interface Fraction extends Comparable<Fraction> {
     public Fraction subtract(Fraction f);
 
     /**
-     * Returns a new <pre>Fraction</pre> that is the <em>product</em> of <pre>this</pre> and the parameter
+     * Returns a new <pre>fraction.Fraction</pre> that is the <em>product</em> of <pre>this</pre> and the parameter
      * <pre>(a/b) * (c/d)</pre> is <pre>(a*c)/(b*d)</pre>
      *
      * @param f the fraction to multiply with the current fraction
@@ -32,7 +35,7 @@ public interface Fraction extends Comparable<Fraction> {
     public Fraction multiply(Fraction f);
 
     /**
-     * Returns a new <pre>Fraction</pre> that is the <em>quotient</em> of dividing <pre>this</pre> by the parameter
+     * Returns a new <pre>fraction.Fraction</pre> that is the <em>quotient</em> of dividing <pre>this</pre> by the parameter
      * <pre>(a/b) / (c/d)</pre> is <pre>(a*d)/(b*c)</pre>
      *
      * @param f the fraction to take part in the division
@@ -41,14 +44,14 @@ public interface Fraction extends Comparable<Fraction> {
     public Fraction divide(Fraction f);
 
     /**
-     * Returns a new <pre>Fraction</pre> that is the <em>absolute value</em> of <pre>this</pre> fraction
+     * Returns a new <pre>fraction.Fraction</pre> that is the <em>absolute value</em> of <pre>this</pre> fraction
      *
      * @return the absolute value of the fraction as a new fraction
      */
     public Fraction abs();
 
     /**
-     * Returns a new <pre>Fraction</pre> that has the same numeric value of <pre>this</pre> fraction,
+     * Returns a new <pre>fraction.Fraction</pre> that has the same numeric value of <pre>this</pre> fraction,
      * but the opposite sign.
      *
      * @return the newly negated fraction
@@ -63,7 +66,7 @@ public interface Fraction extends Comparable<Fraction> {
     public Fraction inverse();
 
     /**
-     * Returns <pre>true</pre> if <pre>o</pre> is a <pre>Fraction</pre> equal to <pre>this</pre>,
+     * Returns <pre>true</pre> if <pre>o</pre> is a <pre>fraction.Fraction</pre> equal to <pre>this</pre>,
      * and <pre>false</pre> in all other cases.
      *
      * @param o the object to compare this one to
