@@ -1,5 +1,7 @@
 package fraction;
 
+import org.omg.PortableInterceptor.INACTIVE;
+
 public class FractionImpl implements Fraction {
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
@@ -16,14 +18,16 @@ public class FractionImpl implements Fraction {
 
 
 
+
     public FractionImpl(int numerator, int denominator) {
         // TODO
         this.numerator = numerator;
         this.denominator = denominator;
-
+        /*
         if(this.denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
         }
+
         else if(this.denominator < 0) {
             this.denominator *= -1;
             this.numerator *= -1;
@@ -40,6 +44,7 @@ public class FractionImpl implements Fraction {
                 this.denominator = this.denominator / i;
             }
         }
+    */
 
     }
 
@@ -68,12 +73,16 @@ public class FractionImpl implements Fraction {
     public FractionImpl(String fraction) {
         // TODO
 
-        char den_string = fraction.charAt(-1);
+        int divisor_sign_index = fraction.indexOf('/');
 
-        if(den_string == '0')
-        {
-            throw new ArithmeticException("cannot divide by 0");
-        }
+        String numerator_string = fraction.substring(0, divisor_sign_index);
+        String denominator_string = fraction.substring(divisor_sign_index, fraction.length() );
+
+        //this.numerator = Integer.parseInt(numerator_string);
+        this.numerator = Integer.parseInt(numerator_string);
+        this.denominator = Integer.parseInt(denominator_string);
+
+
     }
 
     /**
@@ -81,6 +90,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
+
 
 
 
@@ -172,8 +182,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        //this.fraction = this.numerator + "/" + this.denominator;
-        //return this.fraction;
-        return null;
+        String fraction = this.numerator + "/" + this.denominator;
+        return fraction;
     }
 }
