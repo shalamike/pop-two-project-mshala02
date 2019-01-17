@@ -23,12 +23,12 @@ public class FractionImpl implements Fraction {
         // TODO
         this.numerator = numerator;
         this.denominator = denominator;
-        /*
+
         if(this.denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
         }
 
-        else if(this.denominator < 0) {
+        if(this.denominator < 0) {
             this.denominator *= -1;
             this.numerator *= -1;
         }
@@ -44,7 +44,7 @@ public class FractionImpl implements Fraction {
                 this.denominator = this.denominator / i;
             }
         }
-    */
+
 
     }
 
@@ -73,14 +73,35 @@ public class FractionImpl implements Fraction {
     public FractionImpl(String fraction) {
         // TODO
 
+        if (fraction.contains("/")) {
+            int divisor_sign_index = fraction.indexOf('/');
+
+            String numerator_string = fraction.substring(0, divisor_sign_index);
+            String denominator_string = fraction.substring(divisor_sign_index + 1 );
+
+            this.numerator = Integer.parseInt(numerator_string);
+            this.denominator = Integer.parseInt(denominator_string);
+
+            if (this.denominator == 0)
+            {
+                throw new ArithmeticException("Cannot Divide By 0");
+            }
+        }
+        else if(fraction.indexOf("/") < 0) {
+            this.denominator = 1;
+            this.numerator = Integer.parseInt(fraction);
+        }
+
+
+        /*
         int divisor_sign_index = fraction.indexOf('/');
 
         String numerator_string = fraction.substring(0, divisor_sign_index);
-        String denominator_string = fraction.substring(divisor_sign_index, fraction.length() );
+        String denominator_string = fraction.substring(divisor_sign_index + 1 );
 
-        //this.numerator = Integer.parseInt(numerator_string);
         this.numerator = Integer.parseInt(numerator_string);
         this.denominator = Integer.parseInt(denominator_string);
+        */
 
 
     }
@@ -90,8 +111,6 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-
-
 
 
         return null;
