@@ -6,6 +6,7 @@ package fraction;
  */
 public interface Fraction extends Comparable<Fraction> {
 
+
     /**
      * Returns a new <pre>fraction.Fraction</pre> that is the <em>sum</em> of <pre>this</pre> and the parameter:
      *  <pre>a/b + c/d</pre> is <pre>(ad + bc)/bd</pre>

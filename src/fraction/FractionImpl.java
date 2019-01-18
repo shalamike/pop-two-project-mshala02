@@ -1,6 +1,5 @@
 package fraction;
 
-import org.omg.PortableInterceptor.INACTIVE;
 
 public class FractionImpl implements Fraction {
     /**
@@ -16,14 +15,18 @@ public class FractionImpl implements Fraction {
      */
     int numerator, denominator;
 
+    String fraction;
+
 
 
 
     public FractionImpl(int numerator, int denominator) {
+
         // TODO
         this.numerator = numerator;
         this.denominator = denominator;
 
+        /*
         if(this.denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
         }
@@ -33,19 +36,16 @@ public class FractionImpl implements Fraction {
             this.numerator *= -1;
         }
 
-        while(this.numerator % this.denominator != 0) {
-            this.numerator = this.numerator/this.denominator;
-        }
-
-
         for(int i = 0; i > 10; i++) {
             if(this.numerator % i == 0 && this.denominator % i == 0) {
                 this.numerator = this.numerator / i;
                 this.denominator = this.denominator / i;
             }
         }
-
-
+        if(this.numerator == 0){
+            this.denominator = 1;
+        }
+        */
     }
 
     /**
@@ -111,9 +111,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
+        FractionImpl f2 = new FractionImpl(f.toString());
+        FractionImpl f3 = new FractionImpl(numerator, denominator);
 
+        f3.numerator = (f2.numerator * this.denominator) + (this.numerator * f2.denominator);
+        f3.denominator = f2.denominator * this.denominator;
 
-        return null;
+        return f3;
     }
 
     /**
@@ -121,7 +125,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+        FractionImpl f2 = new FractionImpl(f.toString());
+        FractionImpl f3 = new FractionImpl(numerator, denominator);
+
+        f3.numerator = (f2.numerator * this.denominator) - (this.numerator * f2.denominator);
+        f3.denominator = f2.denominator * this.denominator;
+
+        return f3;
     }
 
     /**
@@ -129,7 +139,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
+        FractionImpl f2 = new FractionImpl(f.toString());
+        FractionImpl f3 = new FractionImpl(numerator, denominator);
+
+        f3.numerator = f2.numerator * this.numerator;
+        f3.denominator = f2.denominator * this.denominator;
+
+        return f3;
     }
 
     /**
@@ -137,7 +153,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction divide(Fraction f) {
-        return null;
+        FractionImpl f2 = new FractionImpl(f.toString());
+        FractionImpl f3 = new FractionImpl(numerator, denominator);
+
+        f3.numerator = this.numerator * f2.denominator;
+        f3.denominator = f2.numerator * this.denominator;
+
+        return f3;
     }
 
     /**
@@ -145,7 +167,16 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction abs() {
-        return null;
+        FractionImpl f = new FractionImpl(this.numerator, this.denominator);
+
+        if (f.numerator < 0){
+            f.numerator *= -1;
+        }
+        else if (f.denominator < 0){
+            f.denominator *= -1;
+        }
+
+        return f;
     }
 
     /**
@@ -153,7 +184,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+        FractionImpl f = new FractionImpl(this.numerator, this.denominator);
+
+        f.numerator *= -1;
+        f.denominator *= -1;
+        return f;
     }
 
     /**
@@ -185,6 +220,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
+
         return null;
     }
 
@@ -201,7 +237,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        String fraction = this.numerator + "/" + this.denominator;
-        return fraction;
+        String fraction;
+        if (this.denominator == 0) {
+            this.fraction= this.numerator + "";
+        }
+        else{
+            this.fraction = this.numerator + "/" + this.denominator;
+        }
+        return this.fraction;
     }
 }
