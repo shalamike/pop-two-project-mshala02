@@ -18,6 +18,7 @@ public class Main {
         System.out.println(f1.divide(f2));
         System.out.println(f1.abs());
         System.out.println(f1.negate());
+        System.out.println(f1.inverse());
         System.out.println(f1.equals(f2));
         System.out.println(f1.equals(f3));
 

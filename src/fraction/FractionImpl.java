@@ -19,29 +19,28 @@ public class FractionImpl implements Fraction {
 
 
 
-
     public FractionImpl(int numerator, int denominator) {
-
         // TODO
-
-        if(denominator == 0){
-            throw new ArithmeticException("cannot divide by 0");
-        }
-        else if(denominator < 0) {
-            denominator *= -1;
-            numerator *= -1;
-        }
-
-        if (denominator % numerator == 0) {
-            denominator /= numerator;
-            numerator = 1;
-        }
-
-        if(numerator == 0){
-            denominator = 1;
-        }
         this.numerator = numerator;
         this.denominator = denominator;
+
+        if(this.denominator == 0){
+            throw new ArithmeticException("cannot divide by 0");
+        }
+        else if(this.denominator < 0) {
+            this.denominator *= -1;
+            this.numerator *= -1;
+        }
+
+        if (this.denominator % this.numerator == 0) {
+            this.denominator /= this.numerator;
+            this.numerator = 1;
+        }
+
+        if(this.numerator == 0){
+            this.denominator = 1;
+        }
+
     }
 
     /**
@@ -172,7 +171,6 @@ public class FractionImpl implements Fraction {
         FractionImpl f = new FractionImpl(this.numerator, this.denominator);
 
         f.numerator *= -1;
-        f.denominator *= -1;
         return f;
     }
 
@@ -212,10 +210,8 @@ public class FractionImpl implements Fraction {
     @Override
     public Fraction inverse() {
         FractionImpl f = new FractionImpl(this.numerator, this.denominator);
-        int old_numerator = this.numerator;
-        int old_denominator = this.denominator;
 
-        f.denominator = old_numerator;
+        f.denominator = this.numerator;
         f.numerator = this.denominator;
         return f;
     }
@@ -230,13 +226,31 @@ public class FractionImpl implements Fraction {
 
         return 0;
     }
+/*
+    public FractionImpl(){
+        if(this.denominator == 0){
+            throw new ArithmeticException("cannot divide by 0");
+        }
+        else if(this.denominator < 0) {
+            this.denominator *= -1;
+            this.numerator *= -1;
+        }
 
+        if (this.denominator % this.numerator == 0) {
+            this.denominator /= this.numerator;
+            this.numerator = 1;
+        }
+
+        if(this.numerator == 0){
+            this.denominator = 1;
+        }
+    }
+*/
     /**
      * @inheritDoc
      */
     @Override
     public String toString() {
-        String fraction;
         // the following lines normalises the fractions
 
         //the following lines converts the code into a string
