@@ -23,29 +23,25 @@ public class FractionImpl implements Fraction {
     public FractionImpl(int numerator, int denominator) {
 
         // TODO
-        this.numerator = numerator;
-        this.denominator = denominator;
 
-        /*
-        if(this.denominator == 0){
+        if(denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
         }
-
-        if(this.denominator < 0) {
-            this.denominator *= -1;
-            this.numerator *= -1;
+        else if(denominator < 0) {
+            denominator *= -1;
+            numerator *= -1;
         }
 
-        for(int i = 0; i > 10; i++) {
-            if(this.numerator % i == 0 && this.denominator % i == 0) {
-                this.numerator = this.numerator / i;
-                this.denominator = this.denominator / i;
-            }
+        if (denominator % numerator == 0) {
+            denominator /= numerator;
+            numerator = 1;
         }
-        if(this.numerator == 0){
-            this.denominator = 1;
+
+        if(numerator == 0){
+            denominator = 1;
         }
-        */
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -91,18 +87,6 @@ public class FractionImpl implements Fraction {
             this.denominator = 1;
             this.numerator = Integer.parseInt(fraction);
         }
-
-
-        /*
-        int divisor_sign_index = fraction.indexOf('/');
-
-        String numerator_string = fraction.substring(0, divisor_sign_index);
-        String denominator_string = fraction.substring(divisor_sign_index + 1 );
-
-        this.numerator = Integer.parseInt(numerator_string);
-        this.denominator = Integer.parseInt(denominator_string);
-        */
-
 
     }
 
@@ -155,6 +139,7 @@ public class FractionImpl implements Fraction {
     public Fraction divide(Fraction f) {
         FractionImpl f2 = new FractionImpl(f.toString());
         FractionImpl f3 = new FractionImpl(numerator, denominator);
+        f = new FractionImpl(f.toString());
 
         f3.numerator = this.numerator * f2.denominator;
         f3.denominator = f2.numerator * this.denominator;
@@ -204,6 +189,12 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj instanceof FractionImpl){
+            if (((FractionImpl) obj).numerator == this.numerator && ((FractionImpl) obj).denominator == this.denominator){
+                return true;
+            }
+        }
+
         return super.equals(obj);
     }
 
@@ -220,15 +211,23 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
+        FractionImpl f = new FractionImpl(this.numerator, this.denominator);
+        int old_numerator = this.numerator;
+        int old_denominator = this.denominator;
 
-        return null;
+        f.denominator = old_numerator;
+        f.numerator = this.denominator;
+        return f;
     }
+
 
     /**
      * @inheritDoc
      */
     @Override
     public int compareTo(Fraction o) {
+
+
         return 0;
     }
 
@@ -238,6 +237,10 @@ public class FractionImpl implements Fraction {
     @Override
     public String toString() {
         String fraction;
+        // the following lines normalises the fractions
+
+        //the following lines converts the code into a string
+
         if (this.denominator == 0) {
             this.fraction= this.numerator + "";
         }

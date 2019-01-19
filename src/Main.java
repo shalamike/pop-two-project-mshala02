@@ -7,16 +7,19 @@ public class Main {
         Scanner in = new Scanner(System.in);
         FractionImpl f1 = new FractionImpl("-3/7");
         FractionImpl f2 = new FractionImpl("2/4");
+        FractionImpl f3 = new FractionImpl("-3/7");
 
         System.out.println(f1);
         System.out.println(f2);
-
+        System.out.println();
         System.out.println(f1.add(f2));
         System.out.println(f1.subtract(f2));
         System.out.println(f1.multiply(f2));
         System.out.println(f1.divide(f2));
         System.out.println(f1.abs());
         System.out.println(f1.negate());
+        System.out.println(f1.equals(f2));
+        System.out.println(f1.equals(f3));
 
 
     }
