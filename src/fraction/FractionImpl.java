@@ -23,22 +23,32 @@ public class FractionImpl implements Fraction {
         // TODO
         this.numerator = numerator;
         this.denominator = denominator;
-        /*
-        if(this.denominator == 0){
-            throw new ArithmeticException("cannot divide by 0");
-        }
-        else if(this.denominator < 0) {
-            this.denominator *= -1;
-            this.numerator *= -1;
-        }
 
-        if (this.denominator % this.numerator == 0) {
+        /*
+        if (this.denominator == 0)
+        {
+            this.fraction= this.numerator + "";
+        }
+        else if (this.denominator < 0)
+        {
+            this.numerator *= -1;
+            this.denominator *= -1;
+        }
+        else if (this.denominator % this.numerator == 0)
+        {
             this.denominator /= this.numerator;
             this.numerator = 1;
         }
-
-        if(this.numerator == 0){
-            this.denominator = 1;
+        else
+        {
+            for (int i  = 10; i > 0; i--)
+            {
+                if(this.numerator % i == 0 && this.denominator % i == 0)
+                {
+                    this.numerator /= i;
+                    this.denominator /= i;
+                }
+            }
         }
         */
 
@@ -302,6 +312,7 @@ public class FractionImpl implements Fraction {
         therefore, the fraction is being normalised just before it gets converted to a string to ensure that the
         */
 
+        // this part of the method normalises the fraction before its put into a string
         if (this.denominator == 0)
         {
             this.fraction= this.numerator + "";
@@ -326,15 +337,8 @@ public class FractionImpl implements Fraction {
                     this.denominator /= i;
                 }
             }
-            for (int j = 1; j <= 10; j++)
-            {
-                if (this.numerator % j == 0 && this.denominator % j == 0)
-                {
-                    this.numerator /= j;
-                    this.denominator /= j;
-                }
-            }
         }
+        //this part of the method puts the fraciton into a string
         this.fraction = this.numerator + "/" + this.denominator;
 
         return this.fraction;
