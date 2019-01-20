@@ -23,7 +23,7 @@ public class FractionImpl implements Fraction {
         // TODO
         this.numerator = numerator;
         this.denominator = denominator;
-
+        /*
         if(this.denominator == 0){
             throw new ArithmeticException("cannot divide by 0");
         }
@@ -40,6 +40,7 @@ public class FractionImpl implements Fraction {
         if(this.numerator == 0){
             this.denominator = 1;
         }
+        */
 
     }
 
@@ -48,7 +49,8 @@ public class FractionImpl implements Fraction {
      *
      * @param wholeNumber representing the numerator
      */
-    public FractionImpl(int wholeNumber) {
+    public FractionImpl(int wholeNumber)
+    {
         // TODO
         this.numerator = wholeNumber;
         this.denominator = 1;
@@ -65,10 +67,14 @@ public class FractionImpl implements Fraction {
      *
      * @param fraction the string representation of the fraction
      */
+
+    /* this method converts the string fraction into two seperate ints, this.numerator and this.denominator
+       this method splits the string into two substreings seperated by the '/', regardless of the size of the string.
+     */
     public FractionImpl(String fraction) {
         // TODO
-
-        if (fraction.contains("/")) {
+        if (fraction.contains("/"))
+        {
             int divisor_sign_index = fraction.indexOf('/');
 
             String numerator_string = fraction.substring(0, divisor_sign_index);
@@ -82,7 +88,8 @@ public class FractionImpl implements Fraction {
                 throw new ArithmeticException("Cannot Divide By 0");
             }
         }
-        else if(fraction.indexOf("/") < 0) {
+        else if(fraction.indexOf("/") < 0)
+        {
             this.denominator = 1;
             this.numerator = Integer.parseInt(fraction);
         }
@@ -92,8 +99,13 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+
+    /*
+    this method adds the two fractions the user wants and creates a new value from the result
+    */
     @Override
-    public Fraction add(Fraction f) {
+    public Fraction add(Fraction f)
+    {
         FractionImpl f2 = new FractionImpl(f.toString());
         FractionImpl f3 = new FractionImpl(numerator, denominator);
 
@@ -106,8 +118,13 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+
+    /*
+    this method subtracts the two fractions the user wants and creates a new value from the result
+    */
     @Override
-    public Fraction subtract(Fraction f) {
+    public Fraction subtract(Fraction f)
+    {
         FractionImpl f2 = new FractionImpl(f.toString());
         FractionImpl f3 = new FractionImpl(numerator, denominator);
 
@@ -120,8 +137,12 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+    /*
+    this method multiplies the two fractions together and creates a new fraction from the result
+    */
     @Override
-    public Fraction multiply(Fraction f) {
+    public Fraction multiply(Fraction f)
+    {
         FractionImpl f2 = new FractionImpl(f.toString());
         FractionImpl f3 = new FractionImpl(numerator, denominator);
 
@@ -134,8 +155,12 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+    /*
+    this method divides the two fractions together and creates a new fraction from the result
+    */
     @Override
-    public Fraction divide(Fraction f) {
+    public Fraction divide(Fraction f)
+    {
         FractionImpl f2 = new FractionImpl(f.toString());
         FractionImpl f3 = new FractionImpl(numerator, denominator);
         f = new FractionImpl(f.toString());
@@ -149,14 +174,22 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+
+    /*
+    this method finds the absolute value of the fraction by checking which value in the fraction is a negative and
+    returning it to a positive
+    */
     @Override
-    public Fraction abs() {
+    public Fraction abs()
+    {
         FractionImpl f = new FractionImpl(this.numerator, this.denominator);
 
-        if (f.numerator < 0){
+        if (f.numerator < 0)
+        {
             f.numerator *= -1;
         }
-        else if (f.denominator < 0){
+        else if (f.denominator < 0)
+        {
             f.denominator *= -1;
         }
 
@@ -166,11 +199,20 @@ public class FractionImpl implements Fraction {
     /**
      * @inheritDoc
      */
+
+    /*
+    this method finds the negative value of the fraction.
+    */
     @Override
-    public Fraction negate() {
+    public Fraction negate()
+    {
         FractionImpl f = new FractionImpl(this.numerator, this.denominator);
 
-        f.numerator *= -1;
+        /*
+        the denominator is multiplied by -1 rather than the numerator
+        this is because the method to normalise the fraction would always return the negative to the numerator.
+        */
+        f.denominator *= -1;
         return f;
     }
 
@@ -178,37 +220,21 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return super.hashCode();
     }
 
     /**
      * @inheritDoc
      */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof FractionImpl){
-            if (((FractionImpl) obj).numerator == this.numerator && ((FractionImpl) obj).denominator == this.denominator){
-                return true;
-            }
-        }
 
-        return super.equals(obj);
-    }
-
-    /**
-     * @inheritDoc
-     */
+    /*
+    this method
+    */
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Fraction inverse() {
+    public Fraction inverse()
+    {
         FractionImpl f = new FractionImpl(this.numerator, this.denominator);
 
         f.denominator = this.numerator;
@@ -216,51 +242,93 @@ public class FractionImpl implements Fraction {
         return f;
     }
 
+    /**
+     * @inheritDoc
+     */
+    /*
+    this method checks if the value of both fractions are equal.
+    */
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof FractionImpl)
+        {
+            if (((FractionImpl) obj).numerator == this.numerator && ((FractionImpl) obj).denominator == this.denominator)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /**
      * @inheritDoc
      */
     @Override
-    public int compareTo(Fraction o) {
-
-
-        return 0;
+    protected Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
-/*
-    public FractionImpl(){
-        if(this.denominator == 0){
-            throw new ArithmeticException("cannot divide by 0");
-        }
-        else if(this.denominator < 0) {
-            this.denominator *= -1;
-            this.numerator *= -1;
-        }
 
-        if (this.denominator % this.numerator == 0) {
+
+    /**
+     * @inheritDoc
+     */
+
+    /*
+    similar to how we do addition and subtraction of fractions, the compare to method checks the difference between the
+    numerator values of the two fractions after getting them equal to the lowest common denominator.
+    therefore, the returned value will allways be a positive or a negative int.
+    */
+
+    @Override
+    public int compareTo(Fraction o)
+    {
+        FractionImpl f = new FractionImpl(o.toString());
+        int comparison = (f.numerator * this.denominator) - (this.numerator * f.denominator);
+
+        return comparison;
+    }
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String toString()
+    {
+
+        /*the following normalises the fraction and converts the code into a string
+        although a relatively inefficient, the constructor would not normalise the fraction as it was being created.
+        therefore, the fraction is being normalised just before it gets converted to a string to ensure that the
+        */
+
+        if (this.denominator == 0)
+        {
+            this.fraction= this.numerator + "";
+        }
+        else if (this.denominator < 0)
+        {
+            this.numerator *= -1;
+            this.denominator *= -1;
+        }
+        else if (this.denominator % this.numerator == 0)
+        {
             this.denominator /= this.numerator;
             this.numerator = 1;
         }
-
-        if(this.numerator == 0){
-            this.denominator = 1;
+        else
+        {
+            for (int i  = 10; i > 0; i--)
+            {
+                if(this.numerator % i == 0 && this.denominator % i == 0)
+                {
+                    this.numerator /= i;
+                    this.denominator /= i;
+                }
+            }
         }
-    }
-*/
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String toString() {
-        // the following lines normalises the fractions
+        this.fraction = this.numerator + "/" + this.denominator;
 
-        //the following lines converts the code into a string
-
-        if (this.denominator == 0) {
-            this.fraction= this.numerator + "";
-        }
-        else{
-            this.fraction = this.numerator + "/" + this.denominator;
-        }
         return this.fraction;
     }
 }
