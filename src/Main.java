@@ -7,7 +7,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         FractionImpl f1 = new FractionImpl("-3/7");
         FractionImpl f2 = new FractionImpl("2/4");
-        FractionImpl f3 = new FractionImpl("3/-7");
+        FractionImpl f3 = new FractionImpl("6/-14");
 
         System.out.println("Fraction 1:");
         System.out.println(f1);

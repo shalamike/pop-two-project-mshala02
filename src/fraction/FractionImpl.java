@@ -246,14 +246,14 @@ public class FractionImpl implements Fraction {
      * @inheritDoc
      */
     /*
-    this method checks if the value of both fractions are equal.
+    this method checks if the value of both fractions are equal by checking the difference of the fraction is 0
     */
     @Override
     public boolean equals(Object obj)
     {
         if (obj instanceof FractionImpl)
         {
-            if (((FractionImpl) obj).numerator == this.numerator && ((FractionImpl) obj).denominator == this.denominator)
+            if (((FractionImpl) obj).numerator * this.denominator == this.numerator * ((FractionImpl) obj).denominator)
             {
                 return true;
             }
@@ -324,6 +324,14 @@ public class FractionImpl implements Fraction {
                 {
                     this.numerator /= i;
                     this.denominator /= i;
+                }
+            }
+            for (int j = 1; j <= 10; j++)
+            {
+                if (this.numerator % j == 0 && this.denominator % j == 0)
+                {
+                    this.numerator /= j;
+                    this.denominator /= j;
                 }
             }
         }
